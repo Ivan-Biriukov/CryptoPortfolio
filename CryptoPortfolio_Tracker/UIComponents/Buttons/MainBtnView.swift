@@ -21,6 +21,8 @@ struct MainBtnView: View {
     var hapticIntensivity: (intensity: HapticIntensity, soundID: SystemSoundID) = (.medium, 1519)
     let action: () -> Void
     
+    private let contentPaddings: CGFloat = 12
+    
     var body: some View {
         Button {
             self.triggerHaptic(intensity: hapticIntensivity.intensity, soundId: hapticIntensivity.soundID)
@@ -40,8 +42,8 @@ private extension MainBtnView {
         case .gradientedBG(graiend: let gradient, cornerRadius: let radius, texColor: let textColor):
             Text(title)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.vertical, 12)
-                .padding(.horizontal, 12)
+                .padding(contentPaddings)
+                .padding( contentPaddings)
                 .foregroundStyle(textColor)
                 .background(
                     gradient,
@@ -50,8 +52,7 @@ private extension MainBtnView {
         case .coloredBG(bgColor: let bgColor, cornerRadius: let radius, texColor: let textColor):
             Text(title)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.vertical, 12)
-                .padding(.horizontal, 12)
+                .padding(contentPaddings)
                 .foregroundStyle(textColor)
                 .background(
                     bgColor,
@@ -60,8 +61,8 @@ private extension MainBtnView {
         case .onlyText(textColot: let textColor):
             Text(title)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.vertical, 12)
-                .padding(.horizontal, 12)
+                .padding(contentPaddings)
+                .padding(contentPaddings)
                 .foregroundStyle(textColor)
         }
     }

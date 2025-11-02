@@ -25,6 +25,15 @@ extension View {
     func cornerRad(_ cornerRadius: CGFloat, corners: UIRectCorner = .allCorners) -> some View {
         clipShape(CustomRectangle(cornerRadius: cornerRadius, corners: corners))
     }
+    
+    ///Blure fade in/out
+    @ViewBuilder
+    func blureFade(_ status: Bool) -> some View {
+        self
+            .compositingGroup()
+            .blur(radius: status ? 0 : 10)
+            .opacity(status ? 1 : 0)
+    }
 }
 
 //MARK: - Global properties

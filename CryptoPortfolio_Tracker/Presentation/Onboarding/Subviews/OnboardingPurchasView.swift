@@ -2,6 +2,8 @@ import SwiftUI
 
 fileprivate struct Constants {
     let contentImageSize: CGSize = .init(width: 290, height: 290)
+    let botoomTitleFontSize: CGFloat = 40
+    let btnStackVSpacing: CGFloat = 18
 }
 
 struct OnboardingPurchasView: View {
@@ -31,7 +33,7 @@ private extension OnboardingPurchasView {
             Text(contentData.whiteTitle)
                 .fontWeight(.regular)
                 .foregroundStyle(.white)
-                .font(.system(size: 40))
+                .font(.system(size: k.botoomTitleFontSize))
             
             Spacer()
             
@@ -45,7 +47,7 @@ private extension OnboardingPurchasView {
     }
     
     var btnStack: some View {
-        VStack(alignment: .center, spacing: 18) {
+        VStack(alignment: .center, spacing: k.btnStackVSpacing) {
             MainBtnView(style: .coloredBG(),
                         title: contentData.secondBtnTitle ?? "") {
                 onPurchase()
