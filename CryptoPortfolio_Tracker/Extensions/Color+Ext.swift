@@ -15,3 +15,13 @@ extension Color {
     }
 }
 
+extension Color {
+    struct AppColors{
+        struct Onboarding {
+            static let bgColor: Color = .init(hex: "080A0C")
+            static let activePageIndicator: Color = .init(hex: "3D8DFF")
+            static let unActivePageIndicator: Color = .init(hex: "384657")
+            static let btnColoredBG: Color = .init(hex: "202832")
+        }
+    }
+}

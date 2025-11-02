@@ -1,5 +1,10 @@
 import SwiftUI
 import StoreKit
+import AudioToolbox
+
+enum HapticIntensity {
+    case light, soft, medium, hard
+}
 
 //MARK: - ViewBuilders + Modifiers
 extension View {
@@ -55,5 +60,43 @@ extension View {
         if let termsURL = URL(string: "\(linkString)") {
             UIApplication.shared.open(termsURL)
         }
+    }
+    /// Haptic trigger + system sound
+    /// - Parameters:
+    ///   - intensity: haptic intensivity level  (light / soft / medium / hard)
+    ///   - soundId: System sound ID for aditional effect (default 1519)
+    func triggerHaptic(intensity: HapticIntensity = .medium, soundId: SystemSoundID = 1519) {
+        #if os(iOS)
+        if UIDevice.current.hasHapticEngine {
+            let style: UIImpactFeedbackGenerator.FeedbackStyle
+            switch intensity {
+            case .light: style = .light
+            case .soft: style = .soft
+            case .medium: style = .medium
+            case .hard: style = .heavy
+            }
+            
+            let generator = UIImpactFeedbackGenerator(style: style)
+            generator.impactOccurred()
+            
+            AudioServicesPlaySystemSound(soundId)
+        } else {
+            // fallback: simple vibration on device without haptic
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        }
+        #endif
+    }
+}
+
+
+//MARK: - Onboarding Flow
+extension View {
+    func setupOnboardingViewStyle() -> some View {
+        self
+            .background {
+                Color.AppColors.Onboarding.bgColor
+                    .ignoresSafeArea()
+            }
+            .navigationBarBackButtonHidden()
     }
 }
