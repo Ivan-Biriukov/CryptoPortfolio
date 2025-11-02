@@ -14,7 +14,8 @@ struct RootView: View {
             if !isOnboardingShown {
                 OnboardingFactory().build(from: (), viewModel: onboardingViewModel)
             } else {
-                Text("Main App Starts Here")
+                //TODO: - Change on TabFactory
+                CPTTabbarView()
             }
         }
     }

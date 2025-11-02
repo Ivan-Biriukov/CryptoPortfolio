@@ -23,5 +23,10 @@ extension Color {
             static let unActivePageIndicator: Color = .init(hex: "384657")
             static let btnColoredBG: Color = .init(hex: "202832")
         }
+        
+        struct TabBar {
+            static let seletedItem: Color = .init(hex: "7878FA")
+            static let unselectedItem: Color = .init(hex: "F8F8F8").opacity(0.8)
+        }
     }
 }

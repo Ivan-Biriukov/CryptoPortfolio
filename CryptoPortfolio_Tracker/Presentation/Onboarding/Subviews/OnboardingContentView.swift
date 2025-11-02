@@ -4,6 +4,9 @@ fileprivate struct Constants {
     let contentImageSize: CGSize = .init(width: 290, height: 290)
     let pageCircleIndicatorSize: CGSize = .init(width: 8, height: 8)
     let mainBtnPadings: CGFloat = 32
+    let titleStackVSpacing: CGFloat = 18
+    let titlesFontSize: CGFloat = 40
+    let pageIndicatorsHSpacing: CGFloat = 4
 }
 
 struct OnboardingContentView: View {
@@ -47,7 +50,7 @@ private extension OnboardingContentView {
     var titleStack: some View {
         Group {
             if page != .third && page != .purch {
-                VStack(alignment: .center, spacing: 18) {
+                VStack(alignment: .center, spacing: k.titleStackVSpacing) {
                     Text(page.whiteTitle)
                         .fontWeight(.regular)
                         .foregroundStyle(.white)
@@ -57,7 +60,7 @@ private extension OnboardingContentView {
                         .foregroundStyle(LinearGradient.onboardingGradient)
                 }
             } else {
-                VStack(alignment: .center, spacing: 18) {
+                VStack(alignment: .center, spacing: k.titleStackVSpacing) {
                     Text(page.coloredTitle ?? "")
                         .fontWeight(.bold)
                         .foregroundStyle(LinearGradient.onboardingGradient)
@@ -68,11 +71,11 @@ private extension OnboardingContentView {
                 }
             }
         }
-        .font(.system(size: 40))
+        .font(.system(size: k.titlesFontSize))
     }
     
     var pageIndicator: some View {
-        HStack(alignment: .center, spacing: 4) {
+        HStack(alignment: .center, spacing: k.pageIndicatorsHSpacing) {
             ForEach(0..<3) { index in
                 Circle()
                     .fill(
